@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head"></head>
+
+<body>
+<div th:replace="/layout :: header"></div>
+<p>
+    <a th:href="@{/user/bill}">Back to home</a>
+</p>
+<div class="container">
+<table id = "customers">
+    <thead>
+    <tr>
+        <th>Sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${ordersdetail}">
+        <td th:text="${order.getIdproduct()}"></td>
+        <td th:text="${order.getQuantity()}"></td>
+        <td th:text="${order.getPrice()}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
