@@ -41,6 +41,29 @@
                         <label>Description</label>
                         <input type="text" th:field="*{description}"/>
                     </div>
+
+                    <div>
+                        <label>Condition</label>
+                        <select th:field="*{condition}">
+                            <option value="new">
+                                New
+                            </option>
+                            <option value="Old">
+                                Old
+                            </option>
+                            <option value="Refurbished">
+                                Refurbished
+                            </option>
+                        </select>
+
+                    </div>
+                    <div>
+                        <label>Manufacture</label>
+                        <select th:field="*{manufacture}">
+                            <option th:each="t : ${manufactures}" th:value="${t.id}" th:text="${t.name}"/>
+                        </select>
+
+                    </div>
                     <div>
                         <label>Amount</label>
                         <input type="text" th:field="*{amount}"/>

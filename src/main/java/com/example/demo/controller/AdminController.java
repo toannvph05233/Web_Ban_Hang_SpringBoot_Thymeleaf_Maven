@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.*;
+import com.example.demo.repository.IManufactureRepo;
 import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -43,6 +44,8 @@ public class AdminController {
 
     @Autowired
     private Environment environment;
+    @Autowired
+    private IManufactureRepo manufactureRepo;
 
     @Autowired
     private RenderService renderService;
@@ -50,6 +53,11 @@ public class AdminController {
     @ModelAttribute("renders")
     public Iterable<Render> getListRender() {
         return renderService.findAll();
+    }
+
+    @ModelAttribute("manufactures")
+    public Iterable<Manufacture> getListManufacture() {
+        return manufactureRepo.findAll();
     }
 
     @ModelAttribute("typeproducts")
@@ -164,7 +172,7 @@ public class AdminController {
 
     @GetMapping("/listuser")
     public ModelAndView viewListUser(@RequestParam("regex") Optional<String> regex,
-                                     @SortDefault(sort = {"id"}) @PageableDefault(value = 10) Pageable pageable){
+                                     @SortDefault(sort = {"id"}) @PageableDefault(value = 10) Pageable pageable) {
         Page<UserInfo> userInfos;
         ModelAndView modelAndView = new ModelAndView("admin/viewuser");
         if (regex.isPresent()) {

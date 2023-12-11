@@ -16,11 +16,16 @@ public class Product {
     private double price;
     private String avatar;
     private String description;
+    @Column(name = "conditionP")
+    private String condition;
     private int amount;
     private long commentCount;
 
     @Transient
     private MultipartFile image;
+
+    @ManyToOne
+    Manufacture manufacture;
 
     @ManyToOne
     @JoinColumn(name = "id_type")
